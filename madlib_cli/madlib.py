@@ -44,26 +44,37 @@ def parse_template(raw_template):
         if chunk < len(inputs):
             # Add the {} between each index to the concatenated string
             cleaned_template += "{}"
-
+    # Convert inputs to tuple (from list) because that's what the test wants
     return cleaned_template, tuple(inputs)
 
 
-def merge(cleaned_template, input_types):
+def user_input_gen(input_types):
+    # Initiate the list so we can .append
     user_input = []
+    # Iterate through input types (ex: ["Noun", "Verb", etc.])
     for item in input_types:
+        # Check if it begins with a vowel, so that (most of the time) we can use proper grammar wrt. "a" / "an"
         if re.match(r"[aeiouAEIOU]", item):
             user_item = str(input("Enter an " + item + ": "))
         else:
             user_item = str(input("Enter a " + item + ": "))
+        # Add it to the list of user inputs we're going to return
         user_input.append(user_item)
+    return user_input
+
+
+def merge(cleaned_template, user_input):
+    # format cleaned template with user input list
     return cleaned_template.format(*user_input)
 
 
 def welcome_menu():
     # Use glob to make a list with all the filenames available in assets. Save it as variable "assets" because we'll
-    # use it a lot later.
+    # use it several times later; no need to run glob a zillion times. Setting this before the loop runs also ensures
+    # the menus are consistent even if the assets folder is modified while the code is still running.
     # (thanks to https://pynative.com/python-glob/ for explaining how glob works)
     assets = glob.glob("assets/*")
+    # i like that it says glob glob
 
     # Print menu screen
     print("--------------------------------------------")
@@ -81,48 +92,55 @@ def welcome_menu():
         print("To continue, please select a file from the")
         print("list:")
         print("--------------------------------------------")
+        # print a list of the templates for the user to select from and number them according to their index. Add one
+        # to the index before displaying so that it's more readable (1,2,3 instead of 0,1,2)
         for template in assets:
-            # Putting [7:-4] after the template cuts off the "assets/" at the start and the ".txt" at the end for better
+            # Putting [7:-4] after template cuts off the "assets/" at the start and the ".txt" at the end for better
             # readability.
             print(str(assets.index(template)+1) + ": " + template[7:-4])
         print("--------------------------------------------")
         selection = None
-        # Loop until valid selection is made
+        # Loop until valid numeric selection corresponding to a file in range is made.
         while selection is None:
             try:
-                # Subtract 1 so that counting numbers (1, 2, 3) are converted to indexes properly (0, 1, 2) when we use
-                # selection later to reference indexes in the assets list
+                # Subtract 1 so that counting numbers (1, 2, 3) are converted to indexes properly (0, 1, 2)
                 selection = int(input("Please select a number: ")) - 1
                 # Assert this selection is in range
                 assert selection < len(assets)
             # ValueError will catch if the input can't be made into an int
             except (AssertionError, ValueError):
                 print("Invalid input!")
-                # Reset selection to none so this keeps looping (no valid input yet)
+                # Set selection to None so this keeps looping (needed if the selection is a valid int but out of range)
                 selection = None
 
         # Not strictly necessary because "assert selection < len(assets)" above should catch this. However, just in case
         # the file has been moved or something, we'll double-check that we can access it before we proceed.
         try:
+            # Read the selected index to make sure we can. I like this line, it's really clean.
             read_template(assets[selection])
-            # At this point the file must be readable, so we break from the enclosing while loop.
+            # At this point the file must be readable, so we can break from the enclosing while loop with this:
             valid_selection = True
         # if the file isn't readable:
         except FileNotFoundError as e:
             print("\nFile not found! Please try again.\n\n")
-        # Just in case something goes really wrong, the program can keep running.
+        # Just in case something goes really wrong, the program can keep running after notifying the user.
         except Exception as e:
             print("Unexpected error! " + type(e) + ": " + str(e))
 
     # Valid selection has been made, confirm the selection to user in the readable format as explained above ("[7:-4]")
     print("You selected " + assets[selection][7:-4] + "!\nProcessing story...\n\n")
-    # Store the parsed template to feed to merge function
-    a, b = parse_template(read_template(assets[selection]))
-    # Get user input, etc.
-    completed_story = merge(a, b)
+    # Store the parsed template as variables, so we can get user input and then feed them to merge()
+    temp, input_types = parse_template(read_template(assets[selection]))
+    # Turn the list of input types to actual user input
+    user_input = user_input_gen(input_types)
+    # Use merge to put it all together
+    completed_story = merge(temp, user_input)
+    # Make the CLI look nice
     print("\n\nYour MadLib is ready!")
     print("--------------------------------------------")
+    # Remind the user of the selected template (filename is probably the story's title, so it works as a nice header)
     print(assets[selection][7:-4])
+    # Give the user their story! :)
     print("\n" + completed_story)
 
 
