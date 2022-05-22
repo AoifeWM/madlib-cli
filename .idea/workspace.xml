@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b64d0015-5c13-4042-9f02-8fff3bf84c27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/assets/dark_and_stormy_night_template.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/make_me_a_video_game_template.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/madlib-cli.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/madlib-cli.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/madlib.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/madlib_cli/madlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/madlib_cli/madlib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_madlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_madlib.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +36,7 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_madlib.py">
+  <component name="RunManager" selected="Python.madlib">
     <configuration name="madlib" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="madlib-cli" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -81,8 +78,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_madlib.py" />
         <item itemvalue="Python.madlib" />
+        <item itemvalue="Python tests.pytest in test_madlib.py" />
       </list>
     </recent_temporary>
   </component>
@@ -97,7 +94,7 @@
       <workItem from="1653168838039" duration="657000" />
       <workItem from="1653170083417" duration="21000" />
       <workItem from="1653170118083" duration="17000" />
-      <workItem from="1653170847310" duration="1545000" />
+      <workItem from="1653170847310" duration="7618000" />
     </task>
     <servers />
   </component>
@@ -116,7 +113,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/madlib_cli$pytest_in_test_madlib_py.coverage" NAME="pytest in test_madlib.py Coverage Results" MODIFIED="1653172302410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/madlib_cli$madlib.coverage" NAME="madlib Coverage Results" MODIFIED="1653172236026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/madlib_cli" />
+    <SUITE FILE_PATH="coverage/madlib_cli$pytest_in_test_madlib_py.coverage" NAME="pytest in test_madlib.py Coverage Results" MODIFIED="1653177600831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/madlib_cli$madlib.coverage" NAME="madlib Coverage Results" MODIFIED="1653177696739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/madlib_cli" />
   </component>
 </project>
